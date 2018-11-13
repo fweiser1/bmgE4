@@ -43,7 +43,7 @@ require_once 'include/_data.lib.php';
                             echo '<tr class="pair">';
                         }
                         // afficher la colonne 1 dans un hyperlien
-                        echo '<td><a href="index.php?uc=gererGenre&consulterGenre&id='
+                        echo '<td><a href="index.php?uc=gererGenres&action=consulterGenre&id='
                         . $unGenre->getCode().'">' . $unGenre->getCode().'</a></td>';
                         // afficher les colonnes suivantes
                         echo '<td>' . $unGenre->getLibelle() . '</td>';

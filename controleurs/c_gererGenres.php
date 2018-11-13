@@ -33,7 +33,27 @@ switch ($action) {
         }
         break;
     case 'consulterGenre': {
-            
+            // récupération du code passé dans l'URL
+            if (isset($_GET["id"])) {
+                $strCode = strtoupper(htmlentities($_GET["id"]));
+                // appel de la méthode du modèle
+                $leGenre = GenreDal::loadGenreByID($strCode);
+                if ($leGenre == NULL) {
+                    $tabErreurs[] = 'Ce genre n\'existe pas !';
+                    $hasErrors = true;
+                }
+            }
+            else {
+                // pas d'id dans l'url ni de clic sur Valider : c'est anormal
+                $tabErreurs[] = "Aucun genre n'a été transmis pour consultation !";
+                $hasErrors = true;
+            }
+            if ($hasErrors) {
+                include 'vues/_v_afficherErreurs.php';
+            }
+            else {
+                include 'vues/v_consulterGenre.php';
+            }
         }
         break;
     case 'ajouterGenre': {
@@ -83,8 +103,9 @@ switch ($action) {
                                     $msg = 'Le genre '
                                             . $strCode . '-'
                                             . $strLibelle . ' a été ajouté';
+                                    $leGenre = new Genre($strCode, $strLibelle);
                                     include 'vues/_v_afficherMessage.php';
-                                    //include 'vues/v_consulterGenre.php';
+                                    include 'vues/v_consulterGenre.php';
                                 } else {
                                     $tabErreurs["Erreur"] = 'Une erreur s\'est produite dans l\'opération d\'ajout !';
                                     $hasErrors = true;
