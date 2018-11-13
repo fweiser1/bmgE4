@@ -126,7 +126,51 @@ switch ($action) {
         }
         break;
     case 'supprimerGenre': {
-            
+            // récupération du code passé dans l'URL
+            if (isset($_GET["id"])) {
+                $strCode = strtoupper(htmlentities($_GET["id"]));
+                // appel de la méthode du modèle
+                $leGenre = GenreDal::loadGenreByID($strCode);
+                if ($leGenre == NULL){
+                    $tabErreurs[] = 'Ce genre n\'existe pas !';
+                    $hasErrors = true;
+                }
+                else {
+                    // rechercher des ouvrages de ce genre
+                    if (GenreDal::countOuvragesGenre($leGenre->GetCode()) > 0) {
+                        // il y a des ouvrages référencés, suppression impossible
+                        $tabErreurs[] = "Il existe des ouvrages qui référencient ce genre, suppression impossible !";
+                        $hasErrors = true;
+                    }
+                }
+            }
+            else {
+                // pas d'id dans l'url ni clic sur Valider : c'est anormal
+                $tabErrors[] = "Aucun genre n'a été transmis pour suppression !";
+                $hasErrors = true;
+            }
+            if (!$hasErrors) {
+                $res = GenreDal::delGenre($leGenre->getCode());
+                if ($res > 0) {
+                    $msg = 'Le genre '
+                            . $leGenre->getCode() . ' a été supprimé';
+                    include 'vues/_v_afficherMessage.php';
+                    // affichage de la liste des genres
+                    $lesGenres = genreDal::loadGenres(1);
+                    // afficher le nombre de genres
+                    $nbGenres = count($lesGenres);
+                    include 'vues/v_listeGenres.php';
+                }
+                else {
+                    $tabErreurs[] = 'Une erreur s\'est produite dans l\'opération de suppression ! ';
+                    $hasErrors = true;
+                }
+            }
+            if ($hasErrors) {
+                $msg = "L'opération de suppression n'a pas pu être menée à terme en raison des erreurs suivantes : ";
+                $lien = '<a href="index.php?uc=gererGenres">Retour à la saisie</a>';
+                include 'vues/_v_afficherErreurs.php';
+            }
         }
         break;
     default : include("vues/_v_home.php");
