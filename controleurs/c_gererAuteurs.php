@@ -18,4 +18,15 @@ $titrePage = 'Gestion des auteurs';
 $tabErreurs = array();
 $hasErrors = false;
 
+switch ($action) {
+    case 'listerAuteurs' : {
+        // récupérer les auteurs
+        $lesAuteurs = AuteurDal::loadAuteur(1);
+        // afficher le nombre d'auteurs
+        $nbAuteurs = count($lesAuteurs);
+        include("vues/v_listeAuteurs.php");
+    }
+    break;
+}
+
 ?>
