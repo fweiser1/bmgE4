@@ -58,6 +58,12 @@ class Genre {
 
 }
 
+/*
+ *  ====================================================================
+ *  Classe Auteur : représente un auteur d'ouvrage 
+ *  ====================================================================
+*/
+
 class Auteur {
     private $_id;
     private $_nom;
