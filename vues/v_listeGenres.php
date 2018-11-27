@@ -1,4 +1,4 @@
-<?php
+<?php // COUCOU c'est FLOOOOOOOOO
 /**
  * Page de gestion des genres
 
@@ -58,4 +58,5 @@ require_once 'include/_data.lib.php';
             </div>
         </fieldset>
     </div>
-</div>
+</div> 
+
