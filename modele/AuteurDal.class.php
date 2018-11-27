@@ -43,6 +43,23 @@ class AuteurDal {
             return NULL;
         }
     }
+    
+        public static function addAuteur($id, $nom, $prenom, $alias, $notes) {
+        $cnx = new PdoDao();
+        $qry = 'INSERT INTO auteur VALUES (?,?,?,?,?)';
+        $res = $cnx->execSQL($qry, array(// nb de lignes affectées
+            $id,
+            $nom,
+            $prenom,
+            $alias,
+            $notes
+                )
+        );
+        if (is_a($res, 'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
+    }
 
 }
 
