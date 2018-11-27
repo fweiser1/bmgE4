@@ -27,6 +27,28 @@ switch ($action) {
         include("vues/v_listeAuteurs.php");
     }
     break;
+  case 'consulterAuteur': {
+            // récupération du code passé dans l'URL
+            if (isset($_GET["id"])) {
+                $strCode = strtoupper(htmlentities($_GET["id"]));
+                // appel de la méthode du modèle
+                $lAuteur = AuteurDal::loadAuteursByID($strCode);
+                if ($lAuteur == NULL) {
+                    $tabErreurs[] = 'Cet auteur n\'existe pas !';
+                    $hasErrors = true;
+                }
+            } else {
+                // pas d'id dans l'url ni de clic sur Valider : c'est anormal
+                $tabErreurs[] = "Aucun auteur n'a été transmis pour consultation !";
+                $hasErrors = true;
+            }
+            if ($hasErrors) {
+                include 'vues/_v_afficherErreurs.php';
+            } else {
+                include 'vues/v_consulterAuteur.php';
+            }
+        }
+        break;
 }
 
 ?>
