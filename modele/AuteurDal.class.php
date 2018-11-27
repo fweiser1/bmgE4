@@ -22,6 +22,28 @@ class AuteurDal {
         return $tab;
     }
     
+
+    public static function loadAuteurByID($id) {
+        $cnx = new PdoDao();
+        // requête
+        $qry = 'SELECT id_auteur, nom_auteur, prenom_auteur, alias, notes FROM auteur WHERE id_auteur = ?';
+        $res = $cnx->getRows($qry, array($id), 1);
+        if (is_a($res, 'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        if (!empty($res)) {
+            // le genre existe
+            $id_auteur = $res[0]->id_auteur;
+            $nom = $res[0]->nom_auteur;
+            $prenom = $res[0]->prenom_auteur;
+            $alias = $res[0]->alias;
+            $notes = $res[0]->notes;
+            return new Auteur($id_auteur, $nom, $prenom, $alias, $notes);
+        } else {
+            return NULL;
+        }
+    }
+
 }
 
 ?>

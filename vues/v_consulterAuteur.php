@@ -1,5 +1,5 @@
 <div id="content">
-    <h2>Gestion des genres</h2>
+    <h2>Gestion des auteurs</h2>
     <div id="object-list">                  
         <div class="corps-form">
             <fieldset>
