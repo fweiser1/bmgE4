@@ -1,4 +1,4 @@
-<?php // COUCOU c'est FLOOOOOOOOO
+<?php // COUCOU c'est FLOOOOOOOOOWWW
 /**
  * Page de gestion des genres
 
