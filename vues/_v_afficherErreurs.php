@@ -1,6 +1,7 @@
-<div id="content">
+<div id="content"> 
     <h2><?php echo $titrePage ?></h2>
     <?php
+    //commentaire de Salomé 
     if (strlen($lien) > 0) {
         echo $lien;
     }
