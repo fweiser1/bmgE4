@@ -1,6 +1,6 @@
 <?php
 
-require_once("modele/genreDal.class.php");
+require_once("modele/AuteurDal.class.php");
 require_once("include/_reference.lib.php");
 
 if (!isset($_REQUEST['action'])) {
@@ -21,7 +21,7 @@ $hasErrors = false;
 switch ($action) {
     case 'listerAuteurs' : {
         // récupérer les auteurs
-        $lesAuteurs = AuteurDal::loadAuteur(1);
+        $lesAuteurs = AuteurDal::loadAuteurs(1);
         // afficher le nombre d'auteurs
         $nbAuteurs = count($lesAuteurs);
         include("vues/v_listeAuteurs.php");
