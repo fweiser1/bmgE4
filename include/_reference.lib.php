@@ -65,36 +65,36 @@ class Genre {
 */
 
 class Auteur {
-    private $_id;
-    private $_nom;
-    private $_prenom;
+    private $_id_auteur;
+    private $_nom_auteur;
+    private $_prenom_auteur;
     private $_alias;
     private $_notes;
     
     public function __construct(
-            $p_id,
-            $p_nom,
-            $p_prenom,
+            $p_id_auteur,
+            $p_nom_auteur,
+            $p_prenom_auteur,
             $p_alias,
             $p_notes
     ) {
-        $this->setID($p_id);
-        $this->setNom($p_code);
-        $this->setPrenom($p_libelle);
-        $this->setAlias($p_libelle);
-        $this->setNotes($p_libelle);
+        $this->setId($p_id_auteur);
+        $this->setNom($p_nom_auteur);
+        $this->setPrenom($p_prenom_auteur);
+        $this->setAlias($p_alias);
+        $this->setNotes($p_notes);
     }  
     
-    public function getID() {
-        return $this->_id;
+    public function getId() {
+        return $this->_id_auteur;
     }
     
     public function getNom() {
-        return $this->_nom;
+        return $this->_nom_auteur;
     }
     
     public function getPrenom() {
-        return $this->_prenom;
+        return $this->_prenom_auteur;
     }
     
     public function getAlias() {
@@ -103,6 +103,26 @@ class Auteur {
     
     public function getNotes() {
         return $this->_notes;
+    }
+    
+    public function setId($p_id_auteur) {
+        $this->_id_auteur = $p_id_auteur;
+    }
+    
+    public function setNom($p_nom_auteur) {
+        $this->_nom_auteur = $p_nom_auteur;
+    }
+    
+    public function setPrenom($p_prenom_auteur) {
+        $this->_prenom_auteur = $p_prenom_auteur;
+    }
+    
+    public function setAlias($p_alias) {
+        $this->_alias = $p_alias;
+    }
+    
+    public function setNotes($p_notes) {
+        $this->_notes = $p_notes;
     }
 }
 

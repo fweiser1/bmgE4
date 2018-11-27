@@ -14,7 +14,7 @@ class AuteurDal {
         if ($style == 1) {
             $res = array();
             foreach ($tab as $ligne) {
-                $unAuteur = new Auteur($ligne->id, $ligne->nom_auteur, $ligne->prenom_auteur, $ligne->alias, $ligne->notes);
+                $unAuteur = new Auteur($ligne->id_auteur, $ligne->nom_auteur, $ligne->prenom_auteur, $ligne->alias, $ligne->notes);
                 array_push($res, $unAuteur);
             }
             return $res;
