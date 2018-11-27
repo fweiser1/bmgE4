@@ -3,7 +3,7 @@
 require_once('PdoDao.class.php');
 
 class AuteurDal {
-    
+
     public static function loadAuteurs($style) {
         $cnx = new PdoDao();
         $qry = 'SELECT * FROM auteur';
@@ -21,7 +21,6 @@ class AuteurDal {
         }
         return $tab;
     }
-    
 
     public static function loadAuteurByID($id) {
         $cnx = new PdoDao();
@@ -43,24 +42,30 @@ class AuteurDal {
             return NULL;
         }
     }
-    
-        public static function addAuteur($id, $nom, $prenom, $alias, $notes) {
+
+    public static function addAuteur($nom, $prenom, $alias, $notes) {
         $cnx = new PdoDao();
-        $qry = 'INSERT INTO auteur VALUES (?,?,?,?,?)';
+        $qry = 'INSERT INTO auteur (nom_auteur, prenom_auteur, alias, notes) VALUES (?,?,?,?)';
         $res = $cnx->execSQL($qry, array(// nb de lignes affectées
-            $id,
             $nom,
             $prenom,
             $alias,
             $notes
                 )
+                
         );
         if (is_a($res, 'PDOException')) {
             return PDO_EXCEPTION_VALUE;
         }
         return $res;
     }
-
+    
+    public static function idMax()
+    {
+        $cnx = new PdoDao();
+        $qry = 'Select Max(id_auteur)+1 from auteur';
+        $tab = $cnx->getRows($qry, array(), $style);
+    }
 }
 
 ?>

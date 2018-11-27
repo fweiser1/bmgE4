@@ -62,19 +62,41 @@ switch ($action) {
                     } break;
                 case 'validerAuteur' : {
                         if (isset($_POST["cmdValider"])) {
-                            // récupération du libellé
-                            if (!empty($_POST["txtLibelle"])) {
-                                $strLibelle = ucfirst(htmlentities($_POST["txtLibelle"]));
+                            
+                            if (!empty($_POST["txtNom"])) {
+                                $strNom = ucfirst(htmlentities($_POST["txtNom"]));
                             }
-                            if (!empty($_POST["txtCode"])) {
-                                $strCode = strtoupper(htmlentities($_POST["txtCode"]));
+                            
+                            if (!empty($_POST["txtPrenom"])) {
+                                $strPrenom = ucfirst(htmlentities($_POST["txtPrenom"]));
                             }
+                            else
+                            {
+                                $strPrenom = NULL;
+                            }
+                            
+                            if (!empty($_POST["txtAlias"])) {
+                                $strAlias = ucfirst(htmlentities($_POST["txtAlias"]));
+                            }
+                            else
+                            {
+                                $strAlias = NULL;
+                            }
+                            
+                            if (!empty($_POST["txtNotes"])) {
+                                $strNotes = ucfirst(htmlentities($_POST["txtNotes"]));
+                            }
+                            else
+                            {
+                                $strNotes = NULL;
+                            }
+                            
                             // test zones obligatoires
-                            if (!empty($strCode) and ! empty($strLibelle)) {
+                            if (!empty($strNom)) {
                                 // les zones obligatoires sont présentes
                                 // tests de cohérence 
                                 // contrôle d'existence d'un genre avec le même code
-                                $doublon = AuteurDal::loadAuteursByID($strCode);
+                                $doublon = AuteurDal::loadAuteurByID($strNom);
                                 if ($doublon != NULL) {
                                     // signaler l'erreur
                                     $tabErreurs[] = 'Il existe déjà un genre avec ce code !';
@@ -82,23 +104,19 @@ switch ($action) {
                                 }
                             } else {
                                 // une ou plusieurs valeurs n'ont pas été saisies
-                                if (empty($strCode)) {
-                                    $tabErreurs[] = "Le code doit être renseigné !";
-                                }
-                                if (empty($strLibelle)) {
-                                    $tabErreurs[] = "Le libellé doit être renseigné !";
-                                }
+                                if (empty($strNom)) {
+                                    $tabErreurs[] = "Le nom doit être renseigné !";
+                                }                       
                                 $hasErrors = true;
                             }
                             if (!$hasErrors) {
-                                $res = AuteurDal::addAuteur($strCode, $strLibelle);
+                                $res = AuteurDal::addAuteur($strNom, $strPrenom, $strAlias, $strNotes);
                                 if ($res > 0) {
-                                    $msg = 'Le genre '
-                                            . $strCode . '-'
-                                            . $strLibelle . ' a été ajouté';
-                                    $lAuteur = new Auteur($strCode, $strLibelle);
+                                    $msg = 'L\'auteur '
+                                            . $strNom . ' a été ajouté';
+//                                    $leAuteur = new Auteur($strNom, $strPrenom, $strAlias, $strNotes);
                                     include 'vues/_v_afficherMessage.php';
-                                    include 'vues/v_consulterAuteur.php';
+//                                    include 'vues/v_consulterAuteur.php';
                                 } else {
                                     $tabErreurs["Erreur"] = 'Une erreur s\'est produite dans l\'opération d\'ajout !';
                                     $hasErrors = true;

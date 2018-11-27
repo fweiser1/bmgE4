@@ -18,25 +18,6 @@ require_once 'include/_config.inc.php';
                     <legend>Ajouter un auteur</legend>
                     <table>
                         <tr>
-                            <td>
-                                <label for="txtId">
-                                    Id :
-                                </label>
-                            </td>
-                            <td>
-                                <input 
-                                    type="text" id="txtId" 
-                                    name="txtId"
-                                    size="3" maxlength="3"
-                                    <?php
-                                    if (!empty($strId)) {
-                                    echo ' value="' . $strId . '"';
-                                    }
-                                    ?>
-                                    />
-                            </td>
-                        </tr>
-                        <tr>
                             <td valign="top">
                                 <label for="txtNom">
                                     Nom :
