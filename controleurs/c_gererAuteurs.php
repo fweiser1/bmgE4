@@ -132,5 +132,50 @@ switch ($action) {
             }
         }
         break;
+        case 'supprimerAuteur': {
+            // récupération du code passé dans l'URL
+            if (isset($_GET["id"])) {
+                $strId = htmlentities($_GET["id"]);
+                // appel de la méthode du modèle
+                $leAuteur = AuteurDal::loadAuteurByID($strId);
+                if ($leAuteur == NULL) {
+                    $tabErreurs[] = 'Cet auteur n\'existe pas !';
+                    $hasErrors = true;
+                } else {
+                    // rechercher des ouvrages de ce genre
+                    if (AuteurDal::countOuvragesAuteur($leAuteur->GetId()) > 0) {
+                        // il y a des ouvrages référencés, suppression impossible
+                        $tabErreurs[] = "Il existe des ouvrages qui référencient cet auteur, suppression impossible !";
+                        $hasErrors = true;
+                    }
+                }
+            } else {
+                // pas d'id dans l'url ni clic sur Valider : c'est anormal
+                $tabErrors[] = "Aucun genre n'a été transmis pour suppression !";
+                $hasErrors = true;
+            }
+            if (!$hasErrors) {
+                $res = AuteurDal::delAuteur($leAuteur->getId());
+                if ($res > 0) {
+                    $msg = 'L\'auteur '
+                            . $leAuteur->getId() . ' a été supprimé';
+                    include 'vues/_v_afficherMessage.php';
+                    // affichage de la liste des genres
+                    $lesGenres = AuteurDal::loadAuteurs(1);
+                    // afficher le nombre de genres
+                    $nbAuteurs = count($lesAuteurs);
+                    include 'vues/v_listeAuteurs.php';
+                } else {
+                    $tabErreurs[] = 'Une erreur s\'est produite dans l\'opération de suppression ! ';
+                    $hasErrors = true;
+                }
+            }
+            if ($hasErrors) {
+                $msg = "L'opération de suppression n'a pas pu être menée à terme en raison des erreurs suivantes : ";
+                $lien = '<a href="index.php?uc=gererAuteurs">Retour à la saisie</a>';
+                include 'vues/_v_afficherErreurs.php';
+            }
+        }
+        break;
 }
 ?>
