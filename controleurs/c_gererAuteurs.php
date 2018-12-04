@@ -112,11 +112,7 @@ switch ($action) {
                             if (!$hasErrors) {
                                 $res = AuteurDal::addAuteur($strNom, $strPrenom, $strAlias, $strNotes);
                                 if ($res > 0) {
-                                    $msg = 'L\'auteur ' . $strId . ' - ' . $strNom . ' ' . $strPrenom;
-                                    if ($unAuteur->getAlias() != NULL){
-                                        $msg = $msg . ' (' . $strAlias . ')';
-                                    }
-                                    $msg = $msg . ' a été ajouté';
+                                    $msg = 'L\'auteur ' . $strNom . ' ' . $strPrenom . ' a été ajouté';
 //                                  $leAuteur = new Auteur($strNom, $strPrenom, $strAlias, $strNotes);
                                     include 'vues/_v_afficherMessage.php';
 //                                    include 'vues/v_consulterAuteur.php';
@@ -206,11 +202,7 @@ switch ($action) {
                                     $leAuteur->setNotes($strNotes);
                                     $res = AuteurDal::setAuteur($leAuteur);
                                     if ($res > 0) {
-                                        $msg = 'L\'auteur ' . $strId . ' - ' . $strNom . ' ' . $strPrenom;
-                                        if ($unAuteur->getAlias() != NULL){
-                                            $msg = $msg . ' (' . $strAlias . ')';
-                                        }
-                                        $msg = $msg . ' a été modifié';
+                                        $msg = 'L\'auteur ' . $strNom . ' ' . $strPrenom . ' a été modifié';
                                         include 'vues/_v_afficherMessage.php';
                                         include 'vues/v_consulterAuteur.php';
                                     } else {
@@ -255,11 +247,7 @@ switch ($action) {
             if (!$hasErrors) {
                 $res = AuteurDal::delAuteur($leAuteur->getId());
                 if ($res > 0) {
-                    $msg = 'L\'auteur ' . $strId . ' - ' . $strNom . ' ' . $strPrenom;
-                    if ($unAuteur->getAlias() != NULL){
-                        $msg = $msg . ' (' . $strAlias . ')';
-                    }
-                    $msg = $msg . ' a été supprimé';
+                    $msg = 'L\'auteur ' . $leAuteur->getNom() . ' ' . $leAuteur->getPrenom() . ' a été supprimé';
                     include 'vues/_v_afficherMessage.php';
                     // affichage de la liste des genres
                     $lesAuteurs = AuteurDal::loadAuteurs(1);
