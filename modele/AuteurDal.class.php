@@ -60,11 +60,23 @@ class AuteurDal {
         return $res;
     }
     
+    /*
     public static function idMax()
     {
         $cnx = new PdoDao();
         $qry = 'Select Max(id_auteur)+1 from auteur';
         $tab = $cnx->getRows($qry, array(), $style);
+    }
+     */
+    
+    public static function countOuvragesAuteur($id) {
+        $cnx = new PdoDao();
+        $qry = 'SELECT COUNT(*) FROM ouvrage WHERE id_auteur = ?';
+        $res = $cnx->getValue($qry, array($id));
+        if (is_a($res, 'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
     }
 }
 
