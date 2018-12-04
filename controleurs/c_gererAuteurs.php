@@ -181,7 +181,7 @@ switch ($action) {
                                                 . $leAuteur->getId() . '-'
                                                 . $leAuteur->getNom() . ' a été ajouté';
                                         include 'vues/_v_afficherMessage.php';
-                                        include 'vues/v_consulterGenre.php';
+                                        include 'vues/v_consulterAuteur.php';
                                     } else {
                                         $tabErreurs[] = "Une erreur s'est produite dans l'opération de mise à jour";
                                         $hasErrors = true;
