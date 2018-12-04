@@ -1,25 +1,15 @@
-<?php
-/**
- * Page de gestion des genres
-
- * @author 
- * @package default
- */
-// inclure les bibliothèques de fonctions
-require_once 'include/_config.inc.php';
-?>
 
 <div id="content">
-    <h2>Gestion des auteurs</h2>
-    <div id="object-list">             
-        <form action="index.php?uc=gererAuteurs&action=ajouterAuteur&option=validerAuteur" method="post">
+    <h2>Gestion des genres</h2>
+    <div id="object-list">   
+        <form action="index.php?uc=gererAuteurs&action=modifierAuteur&option=validerAuteur&id=<?php echo $leAuteur->getId() ?>" method="post">
             <div class="corps-form">
                 <fieldset>
-                    <legend>Ajouter un auteur</legend>
+                    <legend>Modifier un auteur</legend>
                     <table>
                         <tr>
                             <td valign="top">
-                                <label for="txtNom">
+                                <label for="txtLibelle">
                                     Nom :
                                 </label>
                             </td>
@@ -28,11 +18,7 @@ require_once 'include/_config.inc.php';
                                     type="text" id="txtNom" 
                                     name="txtNom"
                                     size="50" maxlength="50"
-                                    <?php
-                                    if (!empty($strNom)) {
-                                    echo ' value="' . $strNom . '"';
-                                    }
-                                    ?>
+                                    value="<?php echo $leAuteur->getNom() ?>"
                                     />
                             </td>
                         </tr>
@@ -47,11 +33,7 @@ require_once 'include/_config.inc.php';
                                     type="text" id="txtPrenom" 
                                     name="txtPrenom"
                                     size="50" maxlength="50"
-                                    <?php
-                                    if (!empty($strPrenom)) {
-                                    echo ' value="' . $strPrenom . '"';
-                                    }
-                                    ?>
+                                    value="<?php echo $leAuteur->getPrenom() ?>"
                                     />
                             </td>
                         </tr>
@@ -66,11 +48,7 @@ require_once 'include/_config.inc.php';
                                     type="text" id="txtAlias" 
                                     name="txtAlias"
                                     size="50" maxlength="50"
-                                    <?php
-                                    if (!empty($strAlias)) {
-                                    echo ' value="' . $strAlias . '"';
-                                    }
-                                    ?>
+                                    value="<?php echo $leAuteur->getAlias() ?>"
                                     />
                             </td>
                         </tr>
@@ -85,11 +63,7 @@ require_once 'include/_config.inc.php';
                                     type="text" id="txtNotes" 
                                     name="txtNotes"
                                     size="50" maxlength="255"
-                                    <?php
-                                    if (!empty($strNotes)) {
-                                    echo ' value="' . $strNotes . '"';
-                                    }
-                                    ?>
+                                    value="<?php echo $leAuteur->getNotes() ?>"
                                     />
                             </td>
                         </tr>
@@ -100,7 +74,7 @@ require_once 'include/_config.inc.php';
                 <p>
                     <input id="cmdValider" name="cmdValider" 
                            type="submit"
-                           value="Ajouter"
+                           value="Modifier"
                            />
                 </p> 
             </div>
