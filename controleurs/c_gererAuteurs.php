@@ -112,9 +112,12 @@ switch ($action) {
                             if (!$hasErrors) {
                                 $res = AuteurDal::addAuteur($strNom, $strPrenom, $strAlias, $strNotes);
                                 if ($res > 0) {
-                                    $msg = 'L\'auteur '
-                                            . $strNom . ' ' . $strPrenom . ' (' . $strAlias . ')' . ' a été ajouté';
-//                                    $leAuteur = new Auteur($strNom, $strPrenom, $strAlias, $strNotes);
+                                    $msg = 'L\'auteur ' . $strId . ' - ' . $strNom . ' ' . $strPrenom;
+                                    if ($unAuteur->getAlias() != NULL){
+                                        $msg = $msg . ' (' . $strAlias . ')';
+                                    }
+                                    $msg = $msg . ' a été ajouté';
+//                                  $leAuteur = new Auteur($strNom, $strPrenom, $strAlias, $strNotes);
                                     include 'vues/_v_afficherMessage.php';
 //                                    include 'vues/v_consulterAuteur.php';
                                 } else {
@@ -203,11 +206,11 @@ switch ($action) {
                                     $leAuteur->setNotes($strNotes);
                                     $res = AuteurDal::setAuteur($leAuteur);
                                     if ($res > 0) {
-                                        $msg = 'L\'Auteur '
-                                                . $leAuteur->getId() . ' - '
-                                                . $leAuteur->getNom() . ' '
-                                                . $leAuteur->getPrenom() . '('
-                                                . $leAuteur->getAlias() . ') a été modifié';
+                                        $msg = 'L\'auteur ' . $strId . ' - ' . $strNom . ' ' . $strPrenom;
+                                        if ($unAuteur->getAlias() != NULL){
+                                            $msg = $msg . ' (' . $strAlias . ')';
+                                        }
+                                        $msg = $msg . ' a été modifié';
                                         include 'vues/_v_afficherMessage.php';
                                         include 'vues/v_consulterAuteur.php';
                                     } else {
@@ -252,8 +255,11 @@ switch ($action) {
             if (!$hasErrors) {
                 $res = AuteurDal::delAuteur($leAuteur->getId());
                 if ($res > 0) {
-                    $msg = 'L\'auteur '
-                            . $leAuteur->getId() . ' - ' . $leAuteur->getNom() . ' ' . $leAuteur->getPrenom() . ' (' . $leAuteur->getAlias() . ')' . ' a été supprimé';
+                    $msg = 'L\'auteur ' . $strId . ' - ' . $strNom . ' ' . $strPrenom;
+                    if ($unAuteur->getAlias() != NULL){
+                        $msg = $msg . ' (' . $strAlias . ')';
+                    }
+                    $msg = $msg . ' a été supprimé';
                     include 'vues/_v_afficherMessage.php';
                     // affichage de la liste des genres
                     $lesAuteurs = AuteurDal::loadAuteurs(1);
