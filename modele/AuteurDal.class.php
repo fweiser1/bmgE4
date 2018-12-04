@@ -78,6 +78,16 @@ class AuteurDal {
         }
         return $res;
     }
+    
+    public static function delAuteur($id) {
+        $cnx = new PdoDao();
+        $qry = 'DELETE FROM auteur WHERE id_auteur = ?';
+        $res = $cnx->execSQL($qry, array($id));
+        if (is_a($res, 'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
+    }
 }
 
 ?>
