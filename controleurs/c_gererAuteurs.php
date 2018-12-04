@@ -132,6 +132,73 @@ switch ($action) {
             }
         }
         break;
+        ///////////////////////////////////////////////////////////////
+        case 'modifierAuteur': {
+            // initialisation des variables 
+            $tabErreurs = array();
+            $hasErrors = false;
+            $strNom = "";
+            if (isset($_REQUEST['id'])) {
+                $strId = htmlentities($_REQUEST['id']);
+                $leAuteur = AuteurDal::loadAuteurByID($strId);
+                if ($leAuteur == NULL) {
+                    $tabErreurs[] = 'Cet auteur n\'existe pas !';
+                    $hasErrors = true;
+                }
+            } else {
+                $tabErreurs[] = 'Aucun auteur n\'a été transmis pour validation !';
+                $hasErrors = true;
+            }
+            if (isset($_GET['option'])) {
+                $option = htmlentities($_GET['option']);
+            } else {
+                $option = 'saisirAuteur';
+            }
+            switch ($option) {
+                case 'saisirAuteur' : {
+                        if (!$hasErrors) {
+                            include 'vues/v_modifierAuteur.php';
+                        } else {
+                            $msg = "L'opération de modification n'a pu être menée à terme en raison des erreurs suivantes :";
+                            include 'vues/_v_afficherErreurs.php';
+                        }
+                    }
+                    break;
+                case 'validerAuteur' : {
+                        if (!$hasErrors) {
+                            if (isset($_POST['cmdValider'])) {
+                                if (!empty($_POST['txtNom'])) {
+                                    $strNom = ucfirst(htmlentities($_POST['txtNom']));
+                                } else {
+                                    $tabErreurs[] = "Le Nom doit être renseigné !";
+                                    $hasErrors = true;
+                                }
+                                if (!$hasErrors) {
+                                    $leAuteur->setNom($strNom);
+                                    $res = AuteurDal::setAuteur($leAuteur);
+                                    if ($res > 0) {
+                                        $msg = 'L\'Auteur '
+                                                . $leAuteur->getId() . '-'
+                                                . $leAuteur->getNom() . ' a été ajouté';
+                                        include 'vues/_v_afficherMessage.php';
+                                        include 'vues/v_consulterGenre.php';
+                                    } else {
+                                        $tabErreurs[] = "Une erreur s'est produite dans l'opération de mise à jour";
+                                        $hasErrors = true;
+                                    }
+                                }
+                            }
+                        }
+                        if ($hasErrors) {
+                            $msg = "L'opération de modification n'a pu être menée à terme en raison des erreurs suivantes :";
+                            include 'vues/_v_afficherErreurs.php';
+                        }
+                    }
+                    break;
+            }
+        }
+        break;
+        ////////////////////////////////////////////
         case 'supprimerAuteur': {
             // récupération du code passé dans l'URL
             if (isset($_GET["id"])) {
