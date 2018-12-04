@@ -113,7 +113,7 @@ switch ($action) {
                                 $res = AuteurDal::addAuteur($strNom, $strPrenom, $strAlias, $strNotes);
                                 if ($res > 0) {
                                     $msg = 'L\'auteur '
-                                            . $strNom . ' a été ajouté';
+                                            . $strNom . ' ' . $strPrenom . ' (' . $strAlias . ')' . ' a été ajouté';
 //                                    $leAuteur = new Auteur($strNom, $strPrenom, $strAlias, $strNotes);
                                     include 'vues/_v_afficherMessage.php';
 //                                    include 'vues/v_consulterAuteur.php';
@@ -169,17 +169,45 @@ switch ($action) {
                             if (isset($_POST['cmdValider'])) {
                                 if (!empty($_POST['txtNom'])) {
                                     $strNom = ucfirst(htmlentities($_POST['txtNom']));
-                                } else {
+                                } 
+                                else 
+                                {
                                     $tabErreurs[] = "Le Nom doit être renseigné !";
                                     $hasErrors = true;
                                 }
+                                if (!empty($_POST["txtPrenom"])) {
+                                    $strPrenom = ucfirst(htmlentities($_POST["txtPrenom"]));
+                                }
+                                else
+                                {
+                                    $strPrenom = NULL;
+                                }
+                                if (!empty($_POST["txtAlias"])) {
+                                    $strAlias = ucfirst(htmlentities($_POST["txtAlias"]));
+                                }
+                                else
+                                {
+                                    $strAlias = NULL;
+                                }
+                                if (!empty($_POST["txtNotes"])) {
+                                    $strNotes = htmlentities($_POST["txtNotes"]);
+                                }
+                                else
+                                {
+                                    $strNotes = NULL;
+                                }
                                 if (!$hasErrors) {
                                     $leAuteur->setNom($strNom);
+                                    $leAuteur->setPrenom($strPrenom);
+                                    $leAuteur->setAlias($strAlias);
+                                    $leAuteur->setNotes($strNotes);
                                     $res = AuteurDal::setAuteur($leAuteur);
                                     if ($res > 0) {
                                         $msg = 'L\'Auteur '
-                                                . $leAuteur->getId() . '-'
-                                                . $leAuteur->getNom() . ' a été modifié';
+                                                . $leAuteur->getId() . ' - '
+                                                . $leAuteur->getNom() . ' '
+                                                . $leAuteur->getPrenom() . '('
+                                                . $leAuteur->getAlias() . ') a été modifié';
                                         include 'vues/_v_afficherMessage.php';
                                         include 'vues/v_consulterAuteur.php';
                                     } else {
