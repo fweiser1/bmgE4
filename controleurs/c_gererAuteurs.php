@@ -179,7 +179,7 @@ switch ($action) {
                                     if ($res > 0) {
                                         $msg = 'L\'Auteur '
                                                 . $leAuteur->getId() . '-'
-                                                . $leAuteur->getNom() . ' a été ajouté';
+                                                . $leAuteur->getNom() . ' a été modifié';
                                         include 'vues/_v_afficherMessage.php';
                                         include 'vues/v_consulterAuteur.php';
                                     } else {
@@ -225,7 +225,7 @@ switch ($action) {
                 $res = AuteurDal::delAuteur($leAuteur->getId());
                 if ($res > 0) {
                     $msg = 'L\'auteur '
-                            . $leAuteur->getId() . ' a été supprimé';
+                            . $leAuteur->getId() . ' - ' . $leAuteur->getNom() . ' ' . $leAuteur->getPrenom() . '(' . $leAuteur->getAlias() . ')' . ' a été supprimé';
                     include 'vues/_v_afficherMessage.php';
                     // affichage de la liste des genres
                     $lesAuteurs = AuteurDal::loadAuteurs(1);
