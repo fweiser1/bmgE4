@@ -92,7 +92,7 @@ class AuteurDal {
     public static function setAuteur($unAuteur) {
         $cnx = new PdoDao();
         $qry = 'UPDATE auteur SET nom_auteur = ?, prenom_auteur = ?, alias = ?, notes = ? WHERE id_auteur = ?';
-        $res = $cnx->execSQL($qry, array($unAuteur->getNom(),$unAuteur->getPrenom(),$unAuteur->getAlias(),$unAuteur->getNotes()));
+        $res = $cnx->execSQL($qry, array($unAuteur->getNom(),$unAuteur->getPrenom(),$unAuteur->getAlias(),$unAuteur->getNotes(),$unAuteur->getId()));
         if (is_a($res, 'PDOException')) {
             return PDO_EXCEPTION_VALUE;
         }
