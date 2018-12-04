@@ -161,7 +161,7 @@ switch ($action) {
                             . $leAuteur->getId() . ' a été supprimé';
                     include 'vues/_v_afficherMessage.php';
                     // affichage de la liste des genres
-                    $lesGenres = AuteurDal::loadAuteurs(1);
+                    $lesAuteurs = AuteurDal::loadAuteurs(1);
                     // afficher le nombre de genres
                     $nbAuteurs = count($lesAuteurs);
                     include 'vues/v_listeAuteurs.php';
