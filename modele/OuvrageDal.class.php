@@ -94,6 +94,7 @@ class OuvrageDal {
         if (is_a($res, 'PDOException')) {
             return PDO_EXCEPTION_VALUE;
         }
+        
         return $res;
     }
 }
