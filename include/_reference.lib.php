@@ -126,4 +126,75 @@ class Auteur {
     }
 }
 
+class Ouvrage {
+    private $_no_ouvrage;
+    private $_titre_ouvrage;
+    private $_salle_ouvrage;
+    private $_rayon_ouvrage;
+    private $_code_genre_ouvrage;
+    private $_date_acquisition_ouvrage;
+    
+    public function __construct(
+            $p_no_ouvrage,
+            $p_titre_ouvrage,
+            $p_salle_ouvrage,
+            $p_rayon_ouvrage,
+            $p_code_genre_ouvrage,
+            $p_date_acquisition_ouvrage
+    ) {
+        $this->setNo($p_id_ouvrage);
+        $this->setTitre($p_titre_ouvrage);
+        $this->setSalle($p_salle_ouvrage);
+        $this->setRayon($p_rayon_ouvrage);
+        $this->setCodeGenre($p_code_genre_ouvrage);
+        $this->setDateAcquisition($p_date_acquisition_ouvrage);
+    }  
+    
+    public function getNo() {
+        return $this->_no_ouvrage;
+    }
+    
+    public function getTitre() {
+        return $this->_titre_ouvrage;
+    }
+    
+    public function getSalle() {
+        return $this->_salle_ouvrage;
+    }
+    
+    public function getRayon() {
+        return $this->_rayon_ouvrage;
+    }
+    public function getCodeGenre() {
+        return $this->_code_genre_ouvrage;
+    }
+    
+    public function getDateAcquisition() {
+        return $this->_date_acquisition_ouvrage;
+    }
+    
+    public function setNo($p_id_ouvrage) {
+        $this->_no_ouvrage = $p_no_ouvrage;
+    }
+    
+    public function setTitre($p_titre_ouvrage) {
+        $this->_titre_ouvrage = $p_titre_ouvrage;
+    }
+    
+    public function setSalle($p_salle_ouvrage) {
+        $this->_salle_ouvrage = $p_salle_ouvrage;
+    }
+    
+    public function setRayon($p_rayon_ouvrage) {
+        $this->_rayon_ouvrage = $p_rayon_ouvrage;
+    }
+    public function setCodeGenre($p_code_genre_ouvrage) {
+        $this->_code_genre_ouvrage = $p_code_genre_ouvrage;
+    }
+    
+    public function setDateAcquisition($p_date_acquisition_ouvrage) {
+        $this->_date_acquisition_ouvrage = $p_date_acquisition_ouvrage;
+    }
+}
+
 
