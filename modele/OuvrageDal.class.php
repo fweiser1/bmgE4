@@ -84,7 +84,7 @@ class OuvrageDal {
             return PDO_EXCEPTION_VALUE;
         }
         return $res;
-    
+       
     }
     
     public static function setOuvrage($unOuvrage) {
