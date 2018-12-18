@@ -14,7 +14,7 @@ class OuvrageDal {
         if ($style == 1) {
             $res = array();
             foreach ($tab as $ligne) {
-                $unOuvrage = new Ouvrage($ligne->no_ouvrage, $ligne->titre, $ligne->salle, $ligne->rayon, $ligne->code_genre, $ligne->date_acquisition);
+                $unOuvrage = new Ouvrage($ligne->no_ouvrage, $ligne->titre, $ligne->salle, $ligne->rayon, $ligne->code_genre, $ligne->lib_genre, $ligne->acquisition, $ligne->auteur, $ligne->dernier_pret, $ligne->disponibilite);
                 array_push($res, $unOuvrage);
             }
             return $res;
@@ -25,7 +25,7 @@ class OuvrageDal {
     public static function loadOuvrageByID($id) {
         $cnx = new PdoDao();
         // requête
-        $qry = 'SELECT no_ouvrage, titre, salle, rayon, code_genre, date_acquisition FROM ouvrage WHERE no_ouvrage = ?';
+        $qry = 'SELECT no_ouvrage, titre, salle, rayon, code_genre,lib_genre, acquisition, auteur, dernier_pret, disponibilite FROM v_ouvrages WHERE no_ouvrage = ?';
         $res = $cnx->getRows($qry, array($id), 1);
         if (is_a($res, 'PDOException')) {
             return PDO_EXCEPTION_VALUE;
@@ -37,16 +37,20 @@ class OuvrageDal {
             $salle = $res[0]->salle;
             $rayon= $res[0]->rayon;
             $code_genre = $res[0]->code_genre;
-            $date_acquisition= $res[0]->date_acquisition;
-            return new Auteur($no_ouvrage, $titre, $salle, $rayon, $code_genre, $date_acquisition);
+            $lib_genre = $res[0]->lib_genre;
+            $acquisition = $res[0]->acquisition;
+            $auteur = $res[0]->auteur;
+            $dernier_pret = $res[0]->dernier_pret;
+            $disponibilite = $res[0]->disponibilite;
+            return new Ouvrage($no_ouvrage, $titre, $salle, $rayon, $code_genre, $lib_genre, $acquisition ,$auteur, $dernier_pret, $disponibilite);
         } else {
             return NULL;
         }
     }
 
-    public static function addOuvrage($titre, $salle, $rayon, $code_genre, $date_acquisition) {
+    public static function addOuvrage($titre, $salle, $rayon, $code_genre, $acquisition) {
         $cnx = new PdoDao();
-        $qry = 'INSERT INTO ouvrage ($titre, $salle, $rayon, $code_genre, $date_acquisition) VALUES (?,?,?,?)';
+        $qry = 'INSERT INTO ouvrage ($titre, $salle, $rayon, $code_genre, $date_acquisition) VALUES (?,?,?,?,?)';
         $res = $cnx->execSQL($qry, array(// nb de lignes affectées
             $titre,
             $salle,

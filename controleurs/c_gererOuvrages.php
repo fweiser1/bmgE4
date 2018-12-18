@@ -24,7 +24,7 @@ switch ($action) {
             $lesOuvrages = OuvrageDal::loadOuvrages(1);
             // afficher le nombre de genres
             $nbOuvrages = count($lesOuvrages);
-            include("vues/v_listeOuvrages.php");
+            include("vues/v_listerOuvrages.php");
         }
         break;
         case 'consulterOuvrage': {
@@ -262,7 +262,7 @@ switch ($action) {
                     $lesOuvrages = OuvrageDal::loadOuvrages(1);
                     // afficher le nombre de genres
                     $nbOuvrages = count($lesOuvrages);
-                    include 'vues/v_listeOuvrages.php';
+                    include 'vues/v_listerOuvrages.php';
                 } else {
                     $tabErreurs[] = 'Une erreur s\'est produite dans l\'opération de suppression ! ';
                     $hasErrors = true;

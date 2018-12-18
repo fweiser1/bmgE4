@@ -140,14 +140,23 @@ class Ouvrage {
             $p_salle_ouvrage,
             $p_rayon_ouvrage,
             $p_code_genre_ouvrage,
-            $p_date_acquisition_ouvrage
+            $p_lib_genre_ouvrage,
+            $p_acquisition_ouvrage,
+            $p_auteur_ouvrage,
+            $p_dernier_pret_ouvrage,
+            $p_disponibilite_ouvrage
     ) {
         $this->setNo($p_no_ouvrage);
         $this->setTitre($p_titre_ouvrage);
         $this->setSalle($p_salle_ouvrage);
         $this->setRayon($p_rayon_ouvrage);
         $this->setCodeGenre($p_code_genre_ouvrage);
-        $this->setDateAcquisition($p_date_acquisition_ouvrage);
+        $this->setLibGenre($p_lib_genre_ouvrage);
+        $this->setDateAcquisition($p_acquisition_ouvrage);
+        $this->setAuteur($p_auteur_ouvrage);
+        $this->setDernierPret($p_dernier_pret_ouvrage);
+        $this->setDisponibilite($p_disponibilite_ouvrage);
+        
     }  
     
     public function getNo() {
@@ -169,8 +178,24 @@ class Ouvrage {
         return $this->_code_genre_ouvrage;
     }
     
+    public function getLibGenre() {
+        return $this->_lib_genre_ouvrage;
+    }
+    
     public function getDateAcquisition() {
-        return $this->_date_acquisition_ouvrage;
+        return $this->_acquisition_ouvrage;
+    }
+    
+    public function getAuteur() {
+        return $this->_auteur_ouvrage;
+    }
+    
+    public function getDernierPret() {
+        return $this->_dernier_pret_ouvrage;
+    }
+    
+    public function getDisponibilite() {
+        return $this->_disponibilite_ouvrage;
     }
     
     public function setNo($p_no_ouvrage) {
@@ -192,9 +217,26 @@ class Ouvrage {
         $this->_code_genre_ouvrage = $p_code_genre_ouvrage;
     }
     
-    public function setDateAcquisition($p_date_acquisition_ouvrage) {
-        $this->_date_acquisition_ouvrage = $p_date_acquisition_ouvrage;
+    public function setLibGenre($p_lib_genre_ouvrage) {
+        $this->_lib_genre_ouvrage = $p_lib_genre_ouvrage;
     }
+    
+    public function setDateAcquisition($p_acquisition_ouvrage) {
+        $this->_acquisition_ouvrage = $p_acquisition_ouvrage;
+    }
+    
+    public function setAuteur($p_auteur_ouvrage) {
+        $this->_auteur_ouvrage = $p_auteur_ouvrage;
+    }
+    
+    public function setDernierPret($p_dernier_pret_ouvrage) {
+        $this->_dernier_pret_ouvrage = $p_dernier_pret_ouvrage;
+    }
+    
+    public function setDisponibilite($p_disponibilite_ouvrage) {
+        $this->_disponibilite_ouvrage = $p_disponibilite_ouvrage;
+    }
+    
 }
 
 
