@@ -142,7 +142,7 @@ class Ouvrage {
             $p_code_genre_ouvrage,
             $p_date_acquisition_ouvrage
     ) {
-        $this->setNo($p_id_ouvrage);
+        $this->setNo($p_no_ouvrage);
         $this->setTitre($p_titre_ouvrage);
         $this->setSalle($p_salle_ouvrage);
         $this->setRayon($p_rayon_ouvrage);
@@ -173,7 +173,7 @@ class Ouvrage {
         return $this->_date_acquisition_ouvrage;
     }
     
-    public function setNo($p_id_ouvrage) {
+    public function setNo($p_no_ouvrage) {
         $this->_no_ouvrage = $p_no_ouvrage;
     }
     
