@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="styles/screen.css" />
     </head>
     <body>
-        <header id="main-header">
+	<header id="main-header">
             <hr />
             <div>
                 <span class="titre-entete">
@@ -15,10 +15,9 @@
             </div>
             <hr />
             <div id="infos-util">
-                <?php
-                echo 'Connecté : '
-                . $_SESSION['prenom'] . " "
-                . $_SESSION['nom'];
+                <?php echo 'Connecté : '
+                    .$_SESSION['prenom']." "
+                    .$_SESSION['nom'];
                 ?>
             </div>            
         </header>

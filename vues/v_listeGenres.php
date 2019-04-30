@@ -1,16 +1,3 @@
-<?php // COUCOU c'est FLOOOOOOOOOWWW
-/**
- * Page de gestion des genres
-
- * @author 
- * @package default
- */
-session_start();
-// inclure les bibliothèques de fonctions
-require_once 'include/_config.inc.php';
-require_once 'include/_data.lib.php';
-?>
-
 <div id="content">
     <h2>Gestion des genres</h2>
     <a href="index.php?uc=gererGenres&action=ajouterGenre" title="Ajouter">
@@ -22,8 +9,8 @@ require_once 'include/_data.lib.php';
             <legend>Genres</legend>
             <div id="object-list">
                 <?php
-                echo '<span>' . $nbGenres . ' genre(s) trouvé(s)'
-                . '</span><br /><br />';
+                echo '<span>'.$nbGenres.' genre(s) trouvé(s)'
+                        . '</span><br /><br />';
                 // afficher un tableau des genres
                 if ($nbGenres > 0) {
                     // création du tableau
@@ -36,27 +23,29 @@ require_once 'include/_data.lib.php';
                     echo '</tr>';
                     // affichage des lignes du tableau
                     $n = 0;
-                    foreach ($lesGenres as $unGenre) {
+                    foreach($lesGenres as $unGenre)  {                                                            
                         if (($n % 2) == 1) {
                             echo '<tr class="impair">';
-                        } else {
+                        }
+                        else {
                             echo '<tr class="pair">';
                         }
                         // afficher la colonne 1 dans un hyperlien
                         echo '<td><a href="index.php?uc=gererGenres&action=consulterGenre&id='
-                        . $unGenre->getCode().'">' . $unGenre->getCode().'</a></td>';
+                            .$unGenre->getCode().'">'.$unGenre->getCode().'</a></td>';
                         // afficher les colonnes suivantes
-                        echo '<td>' . $unGenre->getLibelle() . '</td>';
+                        echo '<td>'.$unGenre->getLibelle().'</td>';
                         echo '</tr>';
                         $n++;
                     }
                     echo '</table>';
-                } else {
-                    echo "Aucun genre trouvé !";
                 }
+                else {			
+                    echo "Aucun genre trouvé !";
+                }	
                 ?>
             </div>
         </fieldset>
     </div>
-</div> 
-
+</div>          
+       

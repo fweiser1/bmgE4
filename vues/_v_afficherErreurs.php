@@ -1,20 +1,20 @@
-<div id="content"> 
+<div id="content">
     <h2><?php echo $titrePage ?></h2>
     <?php
-    //commentaire de Salomé 
+    // affichage du lien de retour
     if (strlen($lien) > 0) {
         echo $lien;
     }
     ?>
-    <br><br>
+    <br /><br />
     <span class="info">
-        <?php
+        <?php 
         if (strlen($msg) > 0) {
             echo $msg;
         }
-        ?>
-    </span>
+        ?></span>
     <?php
+    // affichage des erreurs   
     foreach ($tabErreurs as $erreur) {
         echo '<span class="erreur">'.$erreur.'</span>';
     }

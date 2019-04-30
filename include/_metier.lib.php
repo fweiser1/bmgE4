@@ -5,8 +5,6 @@
  * Fonctions métier
  */
 
-// la bibliothèque d'accès aux données
-require_once '_data.lib.php';
 
 /**
  * vérifie la validité du code d'un rayon (1 lettre en majuscules et un chiffre)

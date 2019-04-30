@@ -26,7 +26,7 @@ function afficherListe($res, $nom, $selected, $style) {
         }
         echo '</select>';
         // fermeture du curseur
-        $res->closeCursor();
+       // $res->closeCursor();
     }
 }
 

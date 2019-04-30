@@ -1,24 +1,13 @@
-<?php
-/**
- * Page de gestion des genres
-
- * @author 
- * @package default
- */
-// inclure les bibliothèques de fonctions
-require_once 'include/_config.inc.php';
-?>
-
 <div id="content">
     <h2>Gestion des auteurs</h2>
-    <div id="object-list">             
+    <div id="object-list">
         <form action="index.php?uc=gererAuteurs&action=ajouterAuteur&option=validerAuteur" method="post">
             <div class="corps-form">
                 <fieldset>
                     <legend>Ajouter un auteur</legend>
                     <table>
                         <tr>
-                            <td valign="top">
+                            <td>
                                 <label for="txtNom">
                                     Nom :
                                 </label>
@@ -27,17 +16,12 @@ require_once 'include/_config.inc.php';
                                 <input 
                                     type="text" id="txtNom" 
                                     name="txtNom"
-                                    size="50" maxlength="50"
-                                    <?php
-                                    if (!empty($strNom)) {
-                                    echo ' value="' . $strNom . '"';
-                                    }
-                                    ?>
-                                    />
+                                    size="50" maxlength="128"                                    
+                                />
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
+                            <td>
                                 <label for="txtPrenom">
                                     Prénom :
                                 </label>
@@ -46,17 +30,12 @@ require_once 'include/_config.inc.php';
                                 <input 
                                     type="text" id="txtPrenom" 
                                     name="txtPrenom"
-                                    size="50" maxlength="50"
-                                    <?php
-                                    if (!empty($strPrenom)) {
-                                    echo ' value="' . $strPrenom . '"';
-                                    }
-                                    ?>
-                                    />
+                                    size="50" maxlength="128"
+                                />
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
+                            <td>
                                 <label for="txtAlias">
                                     Alias :
                                 </label>
@@ -65,15 +44,10 @@ require_once 'include/_config.inc.php';
                                 <input 
                                     type="text" id="txtAlias" 
                                     name="txtAlias"
-                                    size="50" maxlength="50"
-                                    <?php
-                                    if (!empty($strAlias)) {
-                                    echo ' value="' . $strAlias . '"';
-                                    }
-                                    ?>
-                                    />
+                                    size="50" maxlength="128"
+                                />
                             </td>
-                        </tr>
+                        </tr>                                        
                         <tr>
                             <td valign="top">
                                 <label for="txtNotes">
@@ -81,19 +55,14 @@ require_once 'include/_config.inc.php';
                                 </label>
                             </td>
                             <td>
-                                <input 
-                                    type="text" id="txtNotes" 
-                                    name="txtNotes"
-                                    size="50" maxlength="255"
-                                    <?php
-                                    if (!empty($strNotes)) {
-                                    echo ' value="' . $strNotes . '"';
-                                    }
-                                    ?>
-                                    />
+                                <textarea id="txtNotes" 
+                                    name="txtNotes" 
+                                    rows="20" 
+                                    cols="80">                                        
+                                </textarea>
                             </td>
                         </tr>
-                    </table>
+                    </table>                                
                 </fieldset>
             </div>
             <div class="pied-form">
@@ -101,9 +70,9 @@ require_once 'include/_config.inc.php';
                     <input id="cmdValider" name="cmdValider" 
                            type="submit"
                            value="Ajouter"
-                           />
+                    />
                 </p> 
             </div>
         </form>
     </div>
-</div>
+</div>          

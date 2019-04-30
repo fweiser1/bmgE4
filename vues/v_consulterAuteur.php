@@ -1,21 +1,34 @@
+<?php
+/** 
+ * Page de gestion des auteurs
+
+ * @author 
+ * @package default
+*/
+?>
 <div id="content">
     <h2>Gestion des auteurs</h2>
-    <div id="object-list">                  
+    <?php 
+    if (strlen($msg) > 0) {
+        echo '<span class="info">'.$msg.'</span>';
+    }
+    ?>
+    <div id="object-list">
         <div class="corps-form">
             <fieldset>
                 <legend>Consulter un auteur</legend>                        
                 <div id="breadcrumb">
                     <a href="index.php?uc=gererAuteurs&action=ajouterAuteur">Ajouter</a>&nbsp;
-                    <a href="index.php?uc=gererAuteurs&action=modifierAuteur&id=<?php echo $leAuteur->getId() ?>">Modifier</a>&nbsp;
-                    <a href="index.php?uc=gererAuteurs&action=supprimerAuteur&id=<?php echo $leAuteur->getId() ?>">Supprimer</a>
+                    <a href="index.php?uc=gererAuteurs&action=modifierAuteur&option=saisirAuteur&id=<?php echo $lAuteur->getId() ?>">Modifier</a>&nbsp;
+                    <a href="index.php?uc=gererAuteurs&action=supprimerAuteur&id=<?php echo $lAuteur->getId() ?>">Supprimer</a>
                 </div>
                 <table>
                     <tr>
                         <td class="h-entete">
-                            Id :
+                            ID :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $leAuteur->getId() ?>
+                            <?php echo $lAuteur->getId() ?>
                         </td>
                     </tr>
                     <tr>
@@ -23,7 +36,7 @@
                             Nom :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $leAuteur->getNom() ?>
+                            <?php echo $lAuteur->getNom() ?>
                         </td>
                     </tr>
                     <tr>
@@ -31,7 +44,7 @@
                             Prénom :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $leAuteur->getPrenom() ?>
+                            <?php echo $lAuteur->getPrenom() ?>
                         </td>
                     </tr>
                     <tr>
@@ -39,7 +52,7 @@
                             Alias :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $leAuteur->getAlias() ?>
+                            <?php echo $lAuteur->getAlias() ?>
                         </td>
                     </tr>
                     <tr>
@@ -47,11 +60,11 @@
                             Notes :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $leAuteur->getNotes() ?>
+                            <?php echo $lAuteur->getNotes() ?>
                         </td>
                     </tr>
                 </table>
             </fieldset>                    
         </div>
     </div>
-</div>    
+</div>

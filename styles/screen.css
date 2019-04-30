@@ -58,6 +58,10 @@ input[type=checkbox], input[type=date], select, option, textarea {
     margin-left: 30px;
 }
 
+select option.listeAuteurs {
+	margin-left: 0px;
+}
+
 input[type=submit], input[type=reset] {
     margin-top: 15px;
     width: 120px;

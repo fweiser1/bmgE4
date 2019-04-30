@@ -7,6 +7,11 @@
                        title="Accueil">Accueil
                     </a>
                 </li>
+                
+                <li class="smenu">
+                    -----------------------------------------
+                </li>
+                
                 <li class="smenu">
                     <a href="index.php?uc=gererOuvrages" 
                        title="Ouvrages">Gestion des ouvrages
@@ -22,6 +27,26 @@
                        title="Auteurs">Gestion des auteurs
                     </a>
                 </li>
+                
+                <li class="smenu">
+                    -----------------------------------------
+                </li>
+                
+                <li class="smenu">
+                    <a href="index.php?uc=gererClients" 
+                       title="Clients">Gestion des clients
+                    </a>
+                </li>
+                <li class="smenu">
+                    <a href="index.php?uc=gererPrets" 
+                       title="Prêts">Gestion des prêts
+                    </a>
+                </li>
+                
+                <li class="smenu">
+                    -----------------------------------------
+                </li>
+                
                 <li class="smenu">
                     <a href="" 
                        title="Se déconnecter">Déconnexion
